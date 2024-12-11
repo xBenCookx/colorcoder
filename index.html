@@ -1,47 +1,95 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Color Coordination!</title>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Coding</title>
     <link rel="icon" type="image/x-icon" href="/assets/images/colorwheel.png">
-    <script src="/assets/index.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
-  </head>
-  <body>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma/css/bulma.min.css">
+    <link rel="stylesheet" href="/assets/styles.css">
 
-  <section class="section">
-    <section class="hero is-small is-primary">
-      <div class="hero-body">
-        <p class="title">Coordinating Colors</p>
-        <p class="subtitle">Helping you match your outfits!</p>
-      </div>
+</head>
+<body>
+
+
+    <!-- Top Section -->
+    <section class="hero is-info is-bold">
+        <div class="hero-body">
+            <div class="container">
+                <h1 class="title">Color Matching</h1>
+                <h2 class="subtitle">A website designed to help you choose colors that go well together.</h2>
+            </div>
+        </div>
     </section>
-  </section>
 
-  <button class="js-modal-trigger button is-primary"  data-target="colors">
-    Colors
-  </button>
+    <!-- Content Section -->
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column">
+                    <div class="box">
+                        <h3 class="title is-4">Step 1</h3>
+                        <p>Press "Open Color Selector", and choose whatever color you like.</p>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="box">
+                        <h3 class="title is-4">Choose a Color</h3>
+                        <button class="button is-primary" id="open-modal">Open Color Selector</button>
+                        <div id="color-display"></div>
+                        <div id="complementary-color-display"></div>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="box">
+                        <h3 class="title is-4">Step 3</h3>
+                        <p>Once you choose the color, the right box will show you a color that matches it!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<footer class="footer">
-  <div class="content has-text-centered">
-    <p>
-      <strong>Project</strong> by <a href="https://www.linkedin.com/in/ben-cook-03020b313" target="_blank">Ben Cook</a>.
-      The source code is licensed
-      <a href="https://opensource.org/license/mit" target="_blank">MIT</a>.
-    </p>
-  </div>
-</footer>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="content has-text-centered">
+            <p>&copy; Project by <a href="https://www.linkedin.com/in/ben-cook-03020b313" target="_blank"> Ben Cook</a>
+        </div>
+    </footer>
 
-<div id="colors" class="modal">
-  <div class="modal-background"></div>
-
-  <div class="modal-content">
-    <div class="box">
-      <p>Modal JS example</p>
-      <!-- Your content -->
+    <!-- Modal and where to add or change primary colors -->
+    <div class="modal" id="color-modal">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">Select a Color</p>
+                <button class="delete" aria-label="close" id="close-modal"></button>
+            </header>
+            <section class="modal-card-body">
+                <div class="field">
+                    <label class="label">Choose a color:</label>
+                    <div class="control">
+                        <div class="select">
+                            <select id="color-select">
+                                <option value="maroon">Maroon</option>
+                                <option value="lightblue">Light Blue</option>
+                                <option value="navy">Navy</option>
+                                <option value="darkgreen">Olive Green</option>
+                                <option value="grey">Grey</option>
+                                <option value="purple">Purple</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <footer class="modal-card-foot">
+                <button class="button is-success" id="apply-color">Apply</button>
+                <button class="button" id="close-modal-footer">Cancel</button>
+            </footer>
+        </div>
     </div>
-  </div>
 
-  </body>
+    <!-- JavaScript -->
+    <script src="/assets/script.js"></script>
+</body>
 </html>

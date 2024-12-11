@@ -1,0 +1,29 @@
+
+.hero.is-info {
+    background-color: #9a8c98; 
+    color: #000000; 
+}
+.box {
+    background-color: #f2e9e4;
+    border: 1px solid #e5c6bf; 
+    color: #404848;
+}
+.footer {
+    background-color: #22223b; 
+    color: #f2e9e4;
+}
+#color-display, #complementary-color-display {
+    width: 100px;
+    height: 100px;
+    margin-top: 20px;
+    border: 2px solid #c9ada7;
+    display: inline-block;
+}
+#complementary-color-display {
+    margin-left: 20px;
+}
+
+.title {
+    color:#22223b
+}
+

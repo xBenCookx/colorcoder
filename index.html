@@ -7,7 +7,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="./assets/images/faviconcolor.png?">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma/css/bulma.min.css">
     <link rel="stylesheet" href="./assets/styles.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
@@ -15,7 +15,7 @@
     <!-- Top Section -->
     <section class="hero is-info is-bold">
         <div class="hero-body">
-            <div class="container">
+            <div class="container has-text-centered">
                 <h1 class="title">Color Matching</h1>
                 <h2 class="subtitle">A website designed to help you choose colors that go well together.</h2>
             </div>
@@ -25,25 +25,34 @@
     <!-- Content Section -->
     <section class="section">
         <div class="container">
-            <div class="columns">
+            <div class="columns is-vcentered">
                 <div class="column">
-                    <div class="box">
+                    <div class="box has-text-centered">
                         <h3 class="title is-4">Step 1</h3>
-                        <p>Press "Open Color Selector", and choose whatever color you like.</p>
+                        <p class="subtitle is-6">Press "Open Color Selector", and choose whatever color you like.</p>
+                        <i class="fas fa-palette fa-2x" style="color: var(--primary-color);"></i>
                     </div>
                 </div>
                 <div class="column">
-                    <div class="box">
+                    <div class="box has-text-centered">
                         <h3 class="title is-4">Choose a Color</h3>
-                        <button class="button is-primary" id="open-modal">Open Color Selector</button>
-                        <div id="color-display"></div>
-                        <div id="complementary-color-display"></div>
+                        <button class="button is-primary is-medium" id="open-modal">
+                            <span class="icon">
+                                <i class="fas fa-paint-brush"></i>
+                            </span>
+                            <span>Open Color Selector</span>
+                        </button>
+                        <div class="mt-5">
+                            <div id="color-display"></div>
+                            <div id="complementary-color-display"></div>
+                        </div>
                     </div>
                 </div>
                 <div class="column">
-                    <div class="box">
+                    <div class="box has-text-centered">
                         <h3 class="title is-4">Step 3</h3>
-                        <p>Once you choose the color, the right box will show you a color that matches it!</p>
+                        <p class="subtitle is-6">Once you choose the color, the right box will show you a color that matches it!</p>
+                        <i class="fas fa-magic fa-2x" style="color: var(--primary-color);"></i>
                     </div>
                 </div>
             </div>
@@ -53,11 +62,11 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="content has-text-centered">
-            <p>&copy; Project by <a href="https://www.linkedin.com/in/ben-cook-03020b313" target="_blank"> Ben Cook</a>
+            <p>&copy; Project by <a href="https://www.linkedin.com/in/ben-cook-03020b313" target="_blank">Ben Cook</a></p>
         </div>
     </footer>
 
-    <!-- Modal and where to add or change primary colors -->
+    <!-- Modal -->
     <div class="modal" id="color-modal">
         <div class="modal-background"></div>
         <div class="modal-card">
@@ -68,22 +77,37 @@
             <section class="modal-card-body">
                 <div class="field">
                     <label class="label">Choose a color:</label>
-                    <div class="control">
-                        <div class="select">
-                            <select id="color-select">
-                                <option value="maroon">Maroon</option>
-                                <option value="lightblue">Light Blue</option>
-                                <option value="navy">Navy</option>
-                                <option value="darkgreen">Olive Green</option>
-                                <option value="grey">Grey</option>
-                                <option value="purple">Purple</option>
-                            </select>
-                        </div>
+                    <div class="color-grid">
+                        <div class="color-swatch" data-color="maroon" style="background-color: maroon;" title="Maroon"></div>
+                        <div class="color-swatch" data-color="lightblue" style="background-color: lightblue;" title="Light Blue"></div>
+                        <div class="color-swatch" data-color="navy" style="background-color: navy;" title="Navy"></div>
+                        <div class="color-swatch" data-color="darkgreen" style="background-color: darkgreen;" title="Olive Green"></div>
+                        <div class="color-swatch" data-color="grey" style="background-color: grey;" title="Grey"></div>
+                        <div class="color-swatch" data-color="purple" style="background-color: purple;" title="Purple"></div>
+                        <div class="color-swatch" data-color="coral" style="background-color: coral;" title="Coral"></div>
+                        <div class="color-swatch" data-color="teal" style="background-color: teal;" title="Teal"></div>
+                        <div class="color-swatch" data-color="gold" style="background-color: gold;" title="Gold"></div>
+                        <div class="color-swatch" data-color="silver" style="background-color: silver;" title="Silver"></div>
+                        <div class="color-swatch" data-color="olive" style="background-color: olive;" title="Olive"></div>
+                        <div class="color-swatch" data-color="salmon" style="background-color: salmon;" title="Salmon"></div>
+                        <div class="color-swatch" data-color="indigo" style="background-color: indigo;" title="Indigo"></div>
+                        <div class="color-swatch" data-color="lavender" style="background-color: lavender;" title="Lavender"></div>
+                        <div class="color-swatch" data-color="#98FF98" style="background-color: #98FF98;" title="Mint"></div>
+                        <div class="color-swatch" data-color="#FFDAB9" style="background-color: #FFDAB9;" title="Peach"></div>
+                        <div class="color-swatch" data-color="#FF007F" style="background-color: #FF007F;" title="Rose"></div>
+                        <div class="color-swatch" data-color="#708090" style="background-color: #708090;" title="Slate"></div>
+                        <div class="color-swatch" data-color="turquoise" style="background-color: turquoise;" title="Turquoise"></div>
+                        <div class="color-swatch" data-color="violet" style="background-color: violet;" title="Violet"></div>
                     </div>
                 </div>
             </section>
             <footer class="modal-card-foot">
-                <button class="button is-success" id="apply-color">Apply</button>
+                <button class="button is-success" id="apply-color">
+                    <span class="icon">
+                        <i class="fas fa-check"></i>
+                    </span>
+                    <span>Apply</span>
+                </button>
                 <button class="button" id="close-modal-footer">Cancel</button>
             </footer>
         </div>

@@ -1,29 +1,206 @@
+/* Modern color palette */
+:root {
+    --primary-color: #4a4e69;
+    --secondary-color: #9a8c98;
+    --accent-color: #c9ada7;
+    --background-color: #f2e9e4;
+    --text-color: #22223b;
+    --light-text: #f2e9e4;
+}
 
+/* Hero section styling */
 .hero.is-info {
-    background-color: #9a8c98; 
-    color: #000000; 
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: var(--light-text);
+    padding: 3rem 0;
 }
+
+.hero .title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--light-text);
+}
+
+.hero .subtitle {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    color: var(--light-text);
+}
+
+/* Box styling */
 .box {
-    background-color: #f2e9e4;
-    border: 1px solid #e5c6bf; 
-    color: #404848;
+    background-color: var(--background-color);
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
 }
-.footer {
-    background-color: #22223b; 
-    color: #f2e9e4;
+
+.box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
+
+.box .title {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+/* Color displays */
 #color-display, #complementary-color-display {
-    width: 100px;
-    height: 100px;
-    margin-top: 20px;
-    border: 2px solid #c9ada7;
+    width: 120px;
+    height: 120px;
+    margin: 20px auto;
+    border-radius: 8px;
+    border: 3px solid var(--accent-color);
     display: inline-block;
+    transition: transform 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
+#color-display:hover, #complementary-color-display:hover {
+    transform: scale(1.05);
+}
+
 #complementary-color-display {
     margin-left: 20px;
 }
 
+/* Button styling */
+.button.is-primary {
+    background-color: var(--primary-color);
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.button.is-primary:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-2px);
+}
+
+/* Modal styling */
+.modal-card {
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.modal-card-head {
+    background-color: var(--primary-color);
+    color: var(--light-text);
+}
+
+.modal-card-title {
+    color: var(--light-text);
+}
+
+/* Footer styling */
+.footer {
+    background-color: var(--primary-color);
+    color: var(--light-text);
+    padding: 2rem 0;
+    margin-top: 3rem;
+}
+
+.footer a {
+    color: var(--accent-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer a:hover {
+    color: var(--light-text);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .hero .title {
+        font-size: 2rem;
+    }
+    
+    .hero .subtitle {
+        font-size: 1rem;
+    }
+    
+    #color-display, #complementary-color-display {
+        width: 100px;
+        height: 100px;
+    }
+}
+
 .title {
     color:#22223b
+}
+
+/* Color Grid Styling */
+.color-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    padding: 20px 10px 10px 10px;
+}
+
+.color-swatch {
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    position: relative;
+}
+
+.color-swatch:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.color-swatch.selected {
+    border: 3px solid var(--primary-color);
+    box-shadow: 0 0 0 2px var(--background-color);
+}
+
+.color-swatch::after {
+    content: attr(title);
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--primary-color);
+    color: var(--light-text);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    white-space: nowrap;
+    z-index: 10;
+}
+
+.color-swatch:hover::after {
+    opacity: 1;
+}
+
+/* Modal adjustments for color grid */
+.modal-card-body {
+    padding: 1.5rem;
+}
+
+/* Responsive adjustments for color grid */
+@media (max-width: 768px) {
+    .color-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .color-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
 }
 

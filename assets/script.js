@@ -74,15 +74,34 @@ document.addEventListener('DOMContentLoaded', () => {
         pinterestGrid.appendChild(loadingDiv);
 
         try {
-            // Note: In a real implementation, you would need to use the Pinterest API
-            // For now, we'll use placeholder images
-            const searchQuery = `${colorName1} ${colorName2} fashion outfit`;
+            // Create search queries
+            const searchQueries = [
+                `${colorName1} ${colorName2} fashion outfit`,
+                `${colorName1} ${colorName2} clothing style`,
+                `${colorName1} ${colorName2} fashion look`
+            ];
+
+            // Use Pexels API
+            const apiKey = 'Mcgo3wXzm6w26p7GFvYm2dv8DiprXmNvlEdXRuj1sbLyePgH09c2NCrL';
+            const query = searchQueries[Math.floor(Math.random() * searchQueries.length)];
             
-            // Simulate API call with placeholder images
-            setTimeout(() => {
-                pinterestGrid.innerHTML = '';
-                // Add some placeholder images
-                for (let i = 0; i < 6; i++) {
+            const response = await fetch(`https://api.pexels.com/v1/search?query=${encodeURIComponent(query)}&per_page=6`, {
+                headers: {
+                    'Authorization': apiKey
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to fetch images');
+            }
+
+            const data = await response.json();
+            
+            // Clear loading indicator
+            pinterestGrid.innerHTML = '';
+
+            if (data.photos && data.photos.length > 0) {
+                data.photos.forEach(photo => {
                     const column = document.createElement('div');
                     column.className = 'column is-4-mobile is-3-tablet is-2-desktop';
                     
@@ -90,17 +109,55 @@ document.addEventListener('DOMContentLoaded', () => {
                     imageDiv.className = 'pinterest-image';
                     
                     const img = document.createElement('img');
-                    img.src = `https://source.unsplash.com/300x400/?${searchQuery}&sig=${i}`;
-                    img.alt = `${colorName1} and ${colorName2} outfit inspiration`;
+                    img.src = photo.src.medium;
+                    img.alt = `${colorName1} and ${colorName2} fashion inspiration`;
+                    img.loading = 'lazy';
+                    
+                    // Add error handling for images
+                    img.onerror = function() {
+                        this.src = `https://source.unsplash.com/featured/?${encodeURIComponent(query)}&fashion`;
+                    };
                     
                     imageDiv.appendChild(img);
                     column.appendChild(imageDiv);
                     pinterestGrid.appendChild(column);
-                }
-            }, 1000);
+                });
+            } else {
+                // Fallback to Unsplash if no Pexels results
+                const fallbackImages = [
+                    `https://source.unsplash.com/featured/?${encodeURIComponent(query)}&fashion`,
+                    `https://source.unsplash.com/featured/?${encodeURIComponent(query)}&clothing`,
+                    `https://source.unsplash.com/featured/?${encodeURIComponent(query)}&style`,
+                    `https://source.unsplash.com/featured/?${encodeURIComponent(query)}&outfit`,
+                    `https://source.unsplash.com/featured/?${encodeURIComponent(query)}&fashion`,
+                    `https://source.unsplash.com/featured/?${encodeURIComponent(query)}&clothing`
+                ];
+
+                fallbackImages.forEach((url, index) => {
+                    const column = document.createElement('div');
+                    column.className = 'column is-4-mobile is-3-tablet is-2-desktop';
+                    
+                    const imageDiv = document.createElement('div');
+                    imageDiv.className = 'pinterest-image';
+                    
+                    const img = document.createElement('img');
+                    img.src = url;
+                    img.alt = `${colorName1} and ${colorName2} fashion inspiration`;
+                    img.loading = 'lazy';
+                    
+                    imageDiv.appendChild(img);
+                    column.appendChild(imageDiv);
+                    pinterestGrid.appendChild(column);
+                });
+            }
         } catch (error) {
             console.error('Error fetching images:', error);
-            pinterestGrid.innerHTML = '<div class="column is-12 has-text-centered">Error loading images. Please try again later.</div>';
+            pinterestGrid.innerHTML = `
+                <div class="column is-12 has-text-centered">
+                    <p class="subtitle is-6">No images found for this color combination.</p>
+                    <p class="subtitle is-6">Try selecting different colors!</p>
+                </div>
+            `;
         }
     }
 

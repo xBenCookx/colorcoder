@@ -204,3 +204,33 @@
     }
 }
 
+/* Pinterest Grid Styling */
+#pinterest-grid {
+    margin-top: 1rem;
+}
+
+.pinterest-image {
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.pinterest-image:hover {
+    transform: scale(1.02);
+}
+
+.pinterest-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Responsive adjustments for Pinterest grid */
+@media (max-width: 768px) {
+    .pinterest-image {
+        margin-bottom: 0.5rem;
+    }
+}
+

@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const colorSwatches = document.querySelectorAll('.color-swatch');
     const colorDisplay = document.getElementById('color-display');
     const complementaryColorDisplay = document.getElementById('complementary-color-display');
+    const pinterestGrid = document.getElementById('pinterest-grid');
 
     // create or change the second color
     const complementaryColors = {
@@ -32,7 +33,76 @@ document.addEventListener('DOMContentLoaded', () => {
         violet: '#00FF7F', // Spring Green
     };
 
+    // Color name mapping for search queries
+    const colorNames = {
+        maroon: 'maroon',
+        lightblue: 'light blue',
+        navy: 'navy',
+        darkgreen: 'olive green',
+        grey: 'grey',
+        purple: 'purple',
+        coral: 'coral',
+        teal: 'teal',
+        gold: 'gold',
+        silver: 'silver',
+        olive: 'olive',
+        salmon: 'salmon',
+        indigo: 'indigo',
+        lavender: 'lavender',
+        '#98FF98': 'mint',
+        '#FFDAB9': 'peach',
+        '#FF007F': 'rose',
+        '#708090': 'slate',
+        turquoise: 'turquoise',
+        violet: 'violet'
+    };
+
     let selectedColor = null;
+
+    // Function to fetch Pinterest images
+    async function fetchPinterestImages(color1, color2) {
+        const colorName1 = colorNames[color1] || color1;
+        const colorName2 = colorNames[color2] || color2;
+        
+        // Clear existing images
+        pinterestGrid.innerHTML = '';
+        
+        // Create a loading indicator
+        const loadingDiv = document.createElement('div');
+        loadingDiv.className = 'column is-12 has-text-centered';
+        loadingDiv.innerHTML = '<i class="fas fa-spinner fa-spin fa-2x"></i>';
+        pinterestGrid.appendChild(loadingDiv);
+
+        try {
+            // Note: In a real implementation, you would need to use the Pinterest API
+            // For now, we'll use placeholder images
+            const searchQuery = `${colorName1} ${colorName2} fashion outfit`;
+            
+            // Simulate API call with placeholder images
+            setTimeout(() => {
+                pinterestGrid.innerHTML = '';
+                // Add some placeholder images
+                for (let i = 0; i < 6; i++) {
+                    const column = document.createElement('div');
+                    column.className = 'column is-4-mobile is-3-tablet is-2-desktop';
+                    
+                    const imageDiv = document.createElement('div');
+                    imageDiv.className = 'pinterest-image';
+                    
+                    const img = document.createElement('img');
+                    img.src = `https://source.unsplash.com/300x400/?${searchQuery}&sig=${i}`;
+                    img.alt = `${colorName1} and ${colorName2} outfit inspiration`;
+                    
+                    imageDiv.appendChild(img);
+                    column.appendChild(imageDiv);
+                    pinterestGrid.appendChild(column);
+                }
+            }, 1000);
+        } catch (error) {
+            console.error('Error fetching images:', error);
+            pinterestGrid.innerHTML = '<div class="column is-12 has-text-centered">Error loading images. Please try again later.</div>';
+        }
+    }
 
     // Load saved color on page load with local storage
     const savedColor = localStorage.getItem('selectedColor');
@@ -85,6 +155,9 @@ document.addEventListener('DOMContentLoaded', () => {
             // Save to local storage
             localStorage.setItem('selectedColor', selectedColor);
             localStorage.setItem('complementaryColor', complementaryColor);
+
+            // Fetch Pinterest images
+            fetchPinterestImages(selectedColor, complementaryColor);
 
             modal.classList.remove('is-active');
         }
